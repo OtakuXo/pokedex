@@ -8,3 +8,17 @@
    --color-color1: #40C987;
    --color-color2: #9AD0E0;
 }
+
+button{
+   background: #40C987;
+   color: #0E1327;
+   padding: 4px 20px;
+   border-radius: 8px;
+}
+
+button:hover {
+   background: #9AD0E0;
+   color: #181A3A;
+   padding: 4px 20px;
+   border-radius: 8px;
+}

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Card from "./components/Card"
-import type { pokemon, baseApiResponse } from "./types";
 import { getCall } from "./utils/getCall";
+import type { pokemon } from "./types/pokemon";
+import type { baseApiResponse } from "./types/baseApi";
 
 function App() {
    const [pokemon, setPokemon] = useState<pokemon[]>([{ name: "", url: "" }]);
@@ -17,7 +18,6 @@ function App() {
       fetchPokemons()
    }, [limit])
 
-   console.log(pokemon)
    return (
       <div>
          <div className="flex flex-wrap justify-center gap-2 ">

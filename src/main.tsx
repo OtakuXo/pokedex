@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')!).render(
       <Layout>
          <Routes>
             <Route index element={<App/>}/>
-            <Route path="pokemon/:id" element={<Pokemon/>}/>
+            <Route path="pokemon/:name" element={<Pokemon/>}/>
             <Route path="statscalculator" element={<StatCalculator/>}/>
          </Routes>
       </Layout>

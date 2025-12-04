@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import type { forms, pokemon, pokemonDetails } from "../types";
 import { getCall } from "../utils/getCall";
 import { NavLink } from "react-router";
+import type { pokemon, pokemonDetails } from "../types/pokemon";
+import type { FormsDetails} from "../types/forums";
 
 // https://pokeapi.co/api/v2/pokemon
 
@@ -21,7 +22,7 @@ export default function Card({ pokemon }: { pokemon: pokemon }) {
 
    useEffect(() => {
       const fetchSprite = async () => {
-         const data: forms = await getCall(spritsUrl);
+         const data: FormsDetails = await getCall(spritsUrl);
          setSrpite(data.sprites.front_default)
       }
       fetchSprite()
