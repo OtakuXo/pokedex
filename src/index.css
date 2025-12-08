@@ -9,16 +9,26 @@
    --color-color2: #9AD0E0;
 }
 
+
 button{
-   background: #40C987;
-   color: #0E1327;
-   padding: 4px 20px;
+   background: var(--color-color1);
+   color: var(--color-secondaryBackground);
+   font-weight:bold;
+   padding: 2px 10px;
+   margin: 2px 2px;
+   border: 1px solid var(--color-color2);
    border-radius: 8px;
 }
 
 button:hover {
-   background: #9AD0E0;
-   color: #181A3A;
-   padding: 4px 20px;
-   border-radius: 8px;
+   background: var(--color-color2);
+}
+
+table,th,td{
+   border: 2px solid var(--color-color1);
+}
+
+td{
+   padding:4px 10px;
+   text-align:center;
 }
