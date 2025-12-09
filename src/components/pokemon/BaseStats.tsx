@@ -11,8 +11,8 @@ export default function BaseStats({ stats }: { stats: Stat[] }) {
    const total = getTotal()
 
    return (
-      <div className="w-10/12 flex flex-col items-center  border-2 border-primaryForground rounded-2xl p-5">
-         <h2 className="text-center text-3xl font-bold"> Base Stats</h2>
+      <div className="w-10/12 flex flex-col items-center py-5">
+         <h2> Base Stats</h2>
          <table className="rounded-xl">
             <thead>
                <tr>

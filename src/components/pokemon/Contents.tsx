@@ -1,38 +1,32 @@
 import { useEffect, useState } from "react"
 import { getCall } from "../../utils/getCall"
 import type { speciesDetails } from "../../types/species"
-import type { FormsDetails } from "../../types/forums"
 import type { pokemonDetails } from "../../types/pokemon"
+import { useParams } from "react-router"
 
-export const Contents = ({ pokemon }: { pokemon: pokemonDetails }) => {
+export const Contents = ({ pokemon, setPokemonSpectesDetails}: { pokemon: pokemonDetails, setPokemonSpectesDetails: React.Dispatch<speciesDetails>}) => {
    const [speciesDetails, setSpieiesDetails] = useState<speciesDetails>()
-   const [formsDetails, setFormsDetails] = useState<FormsDetails>()
 
    const getSpecies = async () => {
       const res = await getCall(pokemon.species.url)
       setSpieiesDetails(res)
-   }
-   const getForms = async () => {
-      const res = await getCall(pokemon.forms[0].url)
-      setFormsDetails(res)
-
+      setPokemonSpectesDetails(res)
    }
 
    useEffect(() => {
       getSpecies()
-      getForms()
-   }, [])
+   }, [pokemon])
 
    return (
-      <div className="w-10/12  border-2 border-primaryForground rounded-2xl p-5">
-         <strong>
+      <div className="w-10/12 rounded-2xl">
+         <strong className="text-center">
             {speciesDetails?.flavor_text_entries[0].flavor_text}
          </strong>
          <div className="flex flex-wrap justify-center gap-10 mt-10">
             <div>
-               <img className="w-[30vw] min-w-36 bg-secondaryBackground rounded-2xl" src={formsDetails?.sprites.front_default} alt="hello" />
+               <img className="w-[30vw] min-w-36 bg-secondaryBackground rounded-2xl" src={pokemon?.sprites.front_default} alt="hello" />
             </div>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap justify-center gap-5">
                <div>
                   <h4 className="font-bold text-xl mt-4 text-center">Pokedex Data</h4>
                   <ol className="">

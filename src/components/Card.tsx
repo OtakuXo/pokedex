@@ -17,7 +17,7 @@ export default function Card({ pokemon }: { pokemon: pokemon }) {
    }, [pokemon])
 
    return (
-      <NavLink to={`pokemon/${pokemon.name}`} className="min-w-[100px] bg-secondaryBackground hover:bg-primaryBackground w-1/7 flex flex-col items-center border border-secondaryForground rounded-xl">
+      <NavLink to={`/pokemon/${pokemon.name}`} className="min-w-[100px] bg-secondaryBackground hover:bg-primaryBackground w-1/7 flex flex-col items-center border border-secondaryForground rounded-xl">
          <img className="w-full" src={sprite} alt="pokemon image" />
          <p>{pokemon.name}</p>
       </NavLink>
