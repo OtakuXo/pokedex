@@ -2,18 +2,17 @@ import { useEffect, useState } from "react"
 import { getCall } from "../../utils/getCall"
 import type { speciesDetails } from "../../types/species"
 import type { pokemonDetails } from "../../types/pokemon"
-import { useParams } from "react-router"
+import { TwoColumnList } from "../TwoColumnList"
 
-export const Contents = ({ pokemon, setPokemonSpectesDetails}: { pokemon: pokemonDetails, setPokemonSpectesDetails: React.Dispatch<speciesDetails>}) => {
+export const Contents = ({ pokemon, setPokemonSpectesDetails }: { pokemon: pokemonDetails, setPokemonSpectesDetails: React.Dispatch<speciesDetails> }) => {
    const [speciesDetails, setSpieiesDetails] = useState<speciesDetails>()
 
-   const getSpecies = async () => {
-      const res = await getCall(pokemon.species.url)
-      setSpieiesDetails(res)
-      setPokemonSpectesDetails(res)
-   }
-
    useEffect(() => {
+      const getSpecies = async () => {
+         const res = await getCall(pokemon.species.url)
+         setSpieiesDetails(res)
+         setPokemonSpectesDetails(res)
+      }
       getSpecies()
    }, [pokemon])
 
@@ -30,30 +29,31 @@ export const Contents = ({ pokemon, setPokemonSpectesDetails}: { pokemon: pokemo
                <div>
                   <h4 className="font-bold text-xl mt-4 text-center">Pokedex Data</h4>
                   <ol className="">
-                     <li className="grid grid-cols-2"><span className="font-bold mr-2 text-end ">National No:</span> {speciesDetails?.id}</li>
-                     <li className="grid grid-cols-2"><span className="font-bold mr-2 text-end">Type:</span> <span>{pokemon?.types.map((i) => <button className="mr-2" key={i.slot}>{i.type?.name}</button>)}</span></li>
-                     <li className="grid grid-cols-2"><span className="font-bold mr-2 text-end">Species:</span>{pokemon?.species.name}</li>
-                     <li className="grid grid-cols-2"><span className="font-bold mr-2 text-end">Height:</span>{pokemon?.height}</li>
-                     <li className="grid grid-cols-2"><span className="font-bold mr-2 text-end">Weight:</span>{pokemon?.weight}</li>
-                     <li className="grid grid-cols-2"><span className="font-bold mr-2 text-end">Abalities:</span> <span>{pokemon?.abilities.map((i) => <button className="mr-2" key={i.slot}>{i.ability?.name}</button>)}</span></li>
-                     <li className="grid grid-cols-2 items-center"><span className="font-bold mr-2 text-end">Dex No:</span> <ol>{speciesDetails?.pokedex_numbers.map((i, index) => <li key={index}>{i.entry_number} ({i.pokedex.name})</li>)}</ol></li>
+                     <TwoColumnList label={"National No"} ><span>{speciesDetails?.id}</span></TwoColumnList>
+                     <TwoColumnList label={"Type"} ><span>{pokemon.types.map((i) => <button className="mr-2" key={i.slot}>{i.type?.name}</button>)}</span></TwoColumnList>
+                     <TwoColumnList label={"Species"} ><span>{pokemon.species.name}</span></TwoColumnList>
+                     <TwoColumnList label={"Height"} ><span>{pokemon.height}</span></TwoColumnList>
+                     <TwoColumnList label={"Weight"} ><span>{pokemon.weight}</span></TwoColumnList>
+                     <TwoColumnList label={"Abalities"} ><span>{pokemon.abilities.map((i) => <button className="mr-2" key={i.slot}>{i.ability?.name}</button>)}</span></TwoColumnList>
+                     <TwoColumnList label={"Weight"} ><span>{pokemon.weight}</span></TwoColumnList>
+                     <TwoColumnList label={"Dex No"} ><ol>{speciesDetails?.pokedex_numbers.map((i, index) => <li key={index}>{i.entry_number} ({i.pokedex.name})</li>)}</ol></TwoColumnList>
                   </ol>
                </div>
                <div>
                   <div>
                      <h4 className="font-bold text-xl mt-4 text-center">Traning</h4>
                      <ol className="">
-                        <li className="grid grid-cols-2"><span className="font-bold mr-2 text-end">Capture Reate</span>: {speciesDetails?.capture_rate}</li>
-                        <li className="grid grid-cols-2"><span className="font-bold mr-2 text-end">Base happiness</span>: {speciesDetails?.base_happiness}</li>
-                        <li className="grid grid-cols-2"><span className="font-bold mr-2 text-end">Base Exp</span>: {pokemon?.base_experience}</li>
-                        <li className="grid grid-cols-2"><span className="font-bold mr-2 text-end ">Growth Rate</span>: {speciesDetails?.growth_rate.name}</li>
+                        <TwoColumnList label={"Capture Rate"} ><span>{speciesDetails?.capture_rate}</span></TwoColumnList>
+                        <TwoColumnList label={"Base happiness"} ><span>{speciesDetails?.base_happiness}</span></TwoColumnList>
+                        <TwoColumnList label={"Base Experience"} ><span>{pokemon.base_experience}</span></TwoColumnList>
+                        <TwoColumnList label={"Growth Rate"} ><span>{speciesDetails?.growth_rate.name}</span></TwoColumnList>
                      </ol>
                   </div>
                   <div>
                      <h4 className="font-bold text-xl mt-4 text-center">Breeding</h4>
                      <ol className="">
-                        <li className="grid grid-cols-2"><span className="font-bold mr-2 text-end">Hatch Counter:</span> {speciesDetails?.hatch_counter}</li>
-                        <li className="grid grid-cols-2"><span className="font-bold mr-2 text-end">Local No:</span> <span>{speciesDetails?.egg_groups.map((i) => <button className="mr-2" key={i.name}>{i.name}</button>)}</span></li>
+                        <TwoColumnList label={"Hatch Counter"} ><span>{speciesDetails?.hatch_counter}</span></TwoColumnList>
+                        <TwoColumnList label={"Egg group"} ><span>{speciesDetails?.egg_groups.map((i) => <button className="mr-2" key={i.name}>{i.name}</button>)}</span></TwoColumnList>
                      </ol>
                   </div>
                </div>

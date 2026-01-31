@@ -12,6 +12,7 @@ export default function EvolutEonChart({ evolutionChain }: { evolutionChain: Evo
    const [secondStageDetails, setSecondSgateDetails] = useState<FormsDetails[]>()
    const [thirdStageDetails, setThirdStageDetails] = useState<FormsDetails[]>()
 
+   useEffect(() => {
    // i dont know what recurssion is
    const getEvolutionChain = async () => {
       const res: Evolution = await getCall(evolutionChain.url)
@@ -39,7 +40,6 @@ export default function EvolutEonChart({ evolutionChain }: { evolutionChain: Evo
       thirdData.map(i => setThirdStageDetails(i))
    }
 
-   useEffect(() => {
       getEvolutionChain()
    }, [evolutionChain])
 
@@ -50,13 +50,13 @@ export default function EvolutEonChart({ evolutionChain }: { evolutionChain: Evo
       <div className="w-full">
          <h2>Evolution Chart</h2>
          <div className="w-full flex flex-wrap justify-center gap-2">
-            <div>
+            <div className="flex justify-center">
                <ShowEvolutionStages formsDetails={firstStageDetails} evolutionDetails={evolutionDetail.chain.evolution_details[0]} />
             </div>
-            <div>
+            <div className="flex justify-center">
                {secondStageDetails.map((i, index) => <ShowEvolutionStages formsDetails={i} evolutionDetails={evolutionDetail.chain.evolves_to.map((j,) => j.evolution_details[0])[index]} key={i.id} />)}
             </div>
-            <div>
+            <div className="flex justify-center">
                {thirdStageDetails.map((i) => <ShowEvolutionStages formsDetails={i} evolutionDetails={evolutionDetail.chain.evolution_details[0]} key={i.id} />)}
             </div>
          </div>
@@ -81,7 +81,6 @@ function ShowEvolutionStages({ formsDetails, evolutionDetails }: { formsDetails:
 }
 
 function evolutionCondition(evolutionDetails: EvolutionDetail) {
-   console.log(evolutionDetails)
    if (evolutionDetails == undefined) return "sorry something went wrong"
 
    const evolutionCondition = evolutionDetails?.location ? "location " + evolutionDetails.location.name :
