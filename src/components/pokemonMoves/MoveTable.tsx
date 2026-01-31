@@ -2,6 +2,8 @@ import type { Move } from "../../types/pokemon"
 import MoveTableData from "./MoveTableData"
 
 export default function MoveTable({ moves, version, moveLearnMethon }: { moves: Move[], version: string, moveLearnMethon: string }) {
+   // moves.map(i=>i.version_group_details.map(j=>console.log(j.version_group)))
+   console.log(moves)
    //filtering moves according to game version and how pokemon learns move 
    const filterdMoves = moves.map(i => {
       return (
