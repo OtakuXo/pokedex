@@ -23,8 +23,8 @@ export default function MoveTableData({ move, versionDetails, moveLearnMethod }:
          <td>{moveDetails?.type.name}</td>
          <td>{moveDetails?.damage_class.name}</td>
          <td>{moveDetails?.pp}</td>
-         <td>{moveDetails?.power}</td>
-         <td>{moveDetails?.accuracy}</td>
+         <td>{moveDetails?.power || "--"}</td>
+         <td>{moveDetails?.accuracy || "--"}</td>
       </tr>
    )
 }
